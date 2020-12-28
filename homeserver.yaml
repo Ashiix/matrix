@@ -1,0 +1,33 @@
+server_name: "ashiix.dev"
+pid_file: /etc/synapse/homeserver.pid
+public_baseurl: https://matrix.ashiix.dev/
+listeners:
+  - port: 8008
+    tls: false
+    type: http
+    x_forwarded: true
+    bind_addresses: ['::1', '127.0.0.1']
+    resources:
+      - names: [client, federation]
+        compress: false
+admin_contact: 'mailto:Ashiix@protonmail.ch'
+database:
+  name: psycopg2
+  args:
+    user: synapse_user
+    password: <password>
+    database: synapse
+    host: localhost
+    cp_min: 5
+    cp_max: 10
+log_config: "/etc/synapse/ashiix.dev.log.config"
+media_store_path: "/etc/synapse/media_store"
+max_upload_size: 50M
+enable_registration: false
+registration_shared_secret: "<secret>"
+report_stats: false
+macaroon_secret_key: "<secret>"
+form_secret: "<secret>"
+signing_key_path: "/etc/synapse/ashiix.dev.signing.key"
+trusted_key_servers:
+  - server_name: "matrix.org"
